@@ -9,7 +9,7 @@ from webconfigapp.netconnect import nodeconnect
 def home(request):
     form = ShowCommandForm(request.POST or None)
 
-    if request.method == 'post':
+    if request.method == 'POST':
         if form.is_valid():
             # Call the netconnect
             show_cmd = request.POST.get('send_command')
