@@ -36,7 +36,7 @@ class nodeconnect:
                 self.data[break_line[0]]['protocol'] = break_line[2]
                 self.data[break_line[0]]['description'] = ' '.join(break_line[3:])
                 
-        return data
+        return self.data
 
 
     def send_config(self, conf_command):
