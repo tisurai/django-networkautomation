@@ -1,3 +1,4 @@
+import json
 import os
 from netmiko import ConnectHandler
 from django.shortcuts import render
@@ -14,7 +15,7 @@ def home(request):
             # Call the netconnect
             show_cmd = request.POST.get('send_command')
             router_object = nodeconnect(show_cmd)
-            return JsonResponse({'data':router_object})
+            return JsonResponse({'data':json.dumps(router_object)})
             
     context = {
         'form': form,
