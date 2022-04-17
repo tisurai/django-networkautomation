@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Django Forms</h1>
+      <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, Django adds the form for you without having to code. </p>
+      <div class="input-group mb-3">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary btn-sm" type="button" id="button-addon2">Run command</button>
+      </div>
+    </div>
+  </div>
+
+<div class="row align-items-md-stretch">
+  <div class="col-md-12">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
+
+  
