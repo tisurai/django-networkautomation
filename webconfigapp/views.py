@@ -5,7 +5,12 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from webconfigapp.forms import ShowCommandForm
 from webconfigapp.netconnect import nodeconnect
-
+from jinja2 import (
+    Environment, 
+    FileSystemLoader, 
+    PackageLoader, 
+    select_autoescape
+)
 
 def home(request):
     form = ShowCommandForm(request.POST or None)
@@ -16,7 +21,22 @@ def home(request):
             show_cmd = request.POST.get('send_command')
             router_object = nodeconnect(show_cmd)
             output = router_object.get_connect()
-            return JsonResponse({'data':output})
+            data = json.dumps(output)
+            ENV = Environment(
+                loader = PackageLoader('webconfigapp', 'templates/configs'),
+                autoescape = select_autoescape(['html', 'j2'])
+            )
+            template = ENV.get_template('cisco.j2')
+            output = template.render(link=data)
+            
+            context = {
+                'form': form,
+                'data': data
+            }
+
+            return render(request, 'index.html', context)
+
+            # return JsonResponse({'data':output})
             
     context = {
         'form': form,
