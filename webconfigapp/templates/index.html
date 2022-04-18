@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if messages %}
+  {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+      <div class="alert alert-danger" role="alert"> {{ message }}</div>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+      <div class="alert alert-success" role="alert"> {{ message }}</div>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+      <div class="alert alert-warning" role="alert"> {{ message }}</div>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+      <div class="alert alert-primary" role="alert"> {{ message }}</div>
+    {% endif %}
+  {% endfor %}
+{% endif%}
 <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold">Django Forms</h1>
@@ -16,7 +32,7 @@
 
 <div class="row align-items-md-stretch">
   <div class="col-md-12">
-    <div class="h-100 p-5 text-white bg-dark rounded-3">  
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
       <p>{{ data }}</p>
     </div>
   </div>

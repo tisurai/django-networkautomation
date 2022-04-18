@@ -1,6 +1,7 @@
 import json
 import os
 from netmiko import ConnectHandler
+from django.contrib import messages
 from django.shortcuts import render
 from django.http import JsonResponse
 from webconfigapp.forms import ShowCommandForm
@@ -28,10 +29,11 @@ def home(request):
             )
             template = ENV.get_template('cisco.j2')
             jinja_output = template.render(link=json.dumps(output))
+            messages.success(request, 'Command sent successfully!')
             
             context = {
                 'form': form,
-                'data': output
+                'data': json.dumps(output)
             }
 
             return render(request, 'index.html', context)
