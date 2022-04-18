@@ -23,7 +23,7 @@ class nodeconnect:
 
         self.connection = ConnectHandler(**device)
 
-        show_output = selfconnection.send_command(self.command, expect_string=r"#")
+        show_output = self.connection.send_command(self.command, expect_string=r"#")
         split_output = show_output.splitlines()
         size = len(split_output)
         temp = {}
