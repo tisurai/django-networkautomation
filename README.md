@@ -7,4 +7,5 @@ In this section, we get our hands dirty and build the application. We learn how 
 - Getting output from a router
 - Creating a Django form
 - Using Bootstrap5 templates
-
+- Deploying the application
+    * Configure firewall to allow ports
