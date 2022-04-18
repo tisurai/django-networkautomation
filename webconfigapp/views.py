@@ -21,22 +21,20 @@ def home(request):
             show_cmd = request.POST.get('send_command')
             router_object = nodeconnect(show_cmd)
             output = router_object.get_connect()
-            data = json.dumps(output)
+
             ENV = Environment(
                 loader = PackageLoader('webconfigapp', 'templates/configs'),
                 autoescape = select_autoescape(['html', 'j2'])
             )
             template = ENV.get_template('cisco.j2')
-            output = template.render(link=data)
+            output = template.render(link=json.dumps(output))
             
             context = {
                 'form': form,
-                'data': data
+                'data': output
             }
 
             return render(request, 'index.html', context)
-
-            # return JsonResponse({'data':output})
             
     context = {
         'form': form,
