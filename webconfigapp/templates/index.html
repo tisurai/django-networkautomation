@@ -6,7 +6,10 @@
       <div class="alert alert-danger" role="alert"> {{ message }}</div>
     {% endif %}
     {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-      <div class="alert alert-success" role="alert"> {{ message }}</div>
+      <div class="alert alert-success" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+        <div>{{ message }}</div> 
+      </div>
     {% endif %}
     {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
       <div class="alert alert-warning" role="alert"> {{ message }}</div>
