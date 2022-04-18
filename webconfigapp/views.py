@@ -16,7 +16,7 @@ def home(request):
             show_cmd = request.POST.get('send_command')
             router_object = nodeconnect(show_cmd)
             output = router_object.get_connect()
-            return JsonResponse({'data':json.dumps(router_object)})
+            return JsonResponse({'data':output})
             
     context = {
         'form': form,
