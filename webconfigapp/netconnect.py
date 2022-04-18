@@ -29,7 +29,7 @@ class nodeconnect:
         temp = {}
 
         for i in range(size):
-            if i > 1:
+            if i >= 1:
                 linestrip = split_output[i].strip()
                 break_line = linestrip.split()
                 temp[break_line[0]] = {}
