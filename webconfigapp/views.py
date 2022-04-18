@@ -15,8 +15,8 @@ def home(request):
             # Call the netconnect
             show_cmd = request.POST.get('send_command')
             router_object = nodeconnect(show_cmd)
-            print(router_object)
-            # return JsonResponse({'data':json.dumps(router_object)})
+            output = router_object.get_connect()
+            return JsonResponse({'data':json.dumps(router_object)})
             
     context = {
         'form': form,

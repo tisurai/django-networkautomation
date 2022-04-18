@@ -5,11 +5,11 @@ from netmiko import ConnectHandler
 class nodeconnect:
     env = environ.Env()
     env.read_env(env.str('ENV_PATH', '.env'))
+    __username = env('SSH_USERNAME')
+    __password = env('SSH_PASSWORD')
 
     def __init__(self, command):
         self.command = command
-        self.username = self.env('SSH_USERNAME')
-        self.password = self.env('SSH_PASSWORD')
         self.connection = None
         self.data = {}
 
@@ -17,24 +17,26 @@ class nodeconnect:
         device = {
             'device_type': 'cisco_ios',
             'host': '192.168.100.1',
-            'username': self.username,
-            'password': self.connection
+            'username': self.__username,
+            'password': self.__password
         }
 
         self.connection = ConnectHandler(**device)
 
-        show_output = connection.send_command(self.command, expect_string=r"#")
+        show_output = selfconnection.send_command(self.command, expect_string=r"#")
         split_output = show_output.splitlines()
         size = len(split_output)
+        temp = {}
 
         for i in range(size):
             if i > 1:
                 linestrip = split_output[i].strip()
                 break_line = linestrip.split()
-                self.data[break_line[0]] = {}
-                self.data[break_line[0]]['line'] = break_line[1]
-                self.data[break_line[0]]['protocol'] = break_line[2]
-                self.data[break_line[0]]['description'] = ' '.join(break_line[3:])
+                temp[break_line[0]] = {}
+                temp[break_line[0]]['line'] = break_line[1]
+                temp[break_line[0]]['protocol'] = break_line[2]
+                temp[break_line[0]]['description'] = ' '.join(break_line[3:])
+                self.data = temp
                 
         return self.data
 
