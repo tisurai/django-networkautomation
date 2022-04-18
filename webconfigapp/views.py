@@ -27,7 +27,7 @@ def home(request):
                 autoescape = select_autoescape(['html', 'j2'])
             )
             template = ENV.get_template('cisco.j2')
-            output = template.render(link=json.dumps(output))
+            jinja_output = template.render(link=json.dumps(output))
             
             context = {
                 'form': form,
