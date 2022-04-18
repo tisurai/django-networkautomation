@@ -6,4 +6,5 @@ In this section, we get our hands dirty and build the application. We learn how 
 - Connecting to a router
 - Getting output from a router
 - Creating a Django form
+- Using Bootstrap5 templates
 
