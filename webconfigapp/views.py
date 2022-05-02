@@ -18,7 +18,7 @@ def home(request):
 
     if request.method == 'POST':
         if form.is_valid():
-            # Call the netconnect
+            # Call the netconnect script
             show_cmd = request.POST.get('send_command')
             router_object = nodeconnect(show_cmd)
             output = router_object.get_connect()
